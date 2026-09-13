@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAYSSA PRIME BEAUTY | Beleza, Moda & Acessórios</title>
+  <meta name="theme-color" content="#2b1823" />
+  <link rel="manifest" href="manifest.json?v=6.1.8" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192-v6-1-8.png" />
+  <link rel="apple-touch-icon" href="icon-192-v6-1-8.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <link rel="stylesheet" href="css/style.css?v=6.1.8" />
+
+  <!-- Fallback de segurança: evita tela de carregamento infinita mesmo se algum recurso JavaScript falhar. -->
+  <script>
+    (function () {
+      function releaseLoader() {
+        var loader = document.getElementById("appLoadingScreen");
+        if (loader) loader.classList.add("hidden");
+      }
+      window.addEventListener("DOMContentLoaded", function () {
+        setTimeout(releaseLoader, 1800);
+      }, { once: true });
+      window.addEventListener("error", function () {
+        setTimeout(releaseLoader, 300);
+      });
+      setTimeout(releaseLoader, 3500);
+    })();
+  </script>
+
+
+<!-- LUMINA_RUNTIME_GUARD_V4: runtime recovery only; no visual/layout changes -->
+<script>
+(function(){
+  "use strict";
+  // Prevent an exception during optional initialization from leaving the splash screen forever.
+  window.addEventListener("error", function(e){
+    try {
+      var splash = document.querySelector(".loading-screen, #loading-screen, #loader, .loader-screen, .loading");
+      if (splash && getComputedStyle(splash).display !== "none") {
+        // Only recover if the page has been waiting unusually long.
+        setTimeout(function(){
+          try {
+            splash.style.display = "none";
+            splash.setAttribute("aria-hidden","true");
+          } catch(_) {}
+        }, 8000);
+      }
+    } catch(_) {}
+  });
+
+  window.addEventListener("unhandledrejection", function(){
+    try {
+      var splash = document.querySelector(".loading-screen, #loading-screen, #loader, .loader-screen, .loading");
+      if (splash) {
+        setTimeout(function(){
+          try {
+            splash.style.display = "none";
+            splash.setAttribute("aria-hidden","true");
+          } catch(_) {}
+        }, 8000);
+      }
+    } catch(_) {}
+  });
+
+  // Keep localStorage operations from breaking the application if browser storage is unavailable.
+  try {
+    var testKey="__lumina_storage_test__";
+    localStorage.setItem(testKey,"1");
+    localStorage.removeItem(testKey);
+  } catch(_) {
+    try {
+      var memStore={};
+      window.localStorage = {
+        getItem:function(k){return Object.prototype.hasOwnProperty.call(memStore,k)?memStore[k]:null;},
+        setItem:function(k,v){memStore[k]=String(v);},
+        removeItem:function(k){delete memStore[k];},
+        clear:function(){memStore={};}
+      };
+    } catch(_) {}
+  }
+})();
+</script>
+
+</head>
+
+<body>
+
+  <!-- ==================================================
+       TELA DE CARREGAMENTO
+  ================================================== -->
+  <div id="interactionLoading" aria-live="polite" aria-busy="true">
+    <div class="interaction-loading-box">
+      <div class="interaction-spinner"></div>
+      <div class="interaction-loading-text" id="interactionLoadingText">Carregando...</div>
+    </div>
+  </div>
+
+  <div id="appLoadingScreen" aria-label="Carregando RAYSSA PRIME BEAUTY">
+    <div class="loading-inner">
+      <div class="loading-logo"><img src="logo-mark-v6-1-8.png" alt="Rayssa Prime Beauty"><span>RAYSSA PRIME BEAUTY</span></div>
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Preparando sua experiência...</div>
+    </div>
+  </div>
+
+
+  <!-- ==================================================
+       CABEÇALHO
+  ================================================== -->
+  <header>
+    <div class="header-top">
+
+      <div class="logo" onclick="filterCategory('Todas')">
+        <img class="brand-logo-image" src="logo-mark-v6-1-8.png" alt="Rayssa Prime Beauty">
+        <span>RAYSSA PRIME BEAUTY</span>
+      </div>
+
+      <button class="header-btn update-bell-btn" id="updateBellBtn" onclick="openUpdateNotificationFromBell()" title="Notificações" aria-label="Notificações">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+          <path d="M10 21h4"></path>
+        </svg>
+        <span class="notification-badge" id="updateBellBadge" aria-hidden="true">1</span>
+      </button>
+
+      <div class="header-actions">
+
+        <button class="header-btn"
+                onclick="openCategories()"
+                title="Categorias">
+
+          <svg viewBox="0 0 24 24">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+
+        </button>
+
+        <button class="header-btn"
+                onclick="openFavorites()"
+                title="Favoritos">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+
+          <span class="badge" id="favBadge">0</span>
+
+        </button>
+
+        <button class="header-btn"
+                onclick="openCart()"
+                title="Sacola">
+
+          <svg viewBox="0 0 24 24">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+
+          <span class="badge" id="cartBadge">0</span>
+
+        </button>
+
+        <button class="header-btn" onclick="openProfile()" title="Meu perfil" id="profileHeaderBtn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="8" r="3.2"></circle>
+            <path d="M5.5 20c.7-3.2 3.1-5 6.5-5s5.8 1.8 6.5 5"></path>
+          </svg>
+        </button>
+
+        <button class="header-btn" onclick="openInstall()" title="Instalar RAYSSA PRIME BEAUTY" id="installHeaderBtn">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3v10"></path>
+            <path d="m8 10 4 4 4-4"></path>
+            <path d="M5 20h14"></path>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="search-container">
+
+      <svg class="search-icon-svg" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="Buscar maquiagem, skincare, roupas e acessórios..."
+        oninput="filterProducts()"
+      />
+
+      <button type="button" id="searchClearBtn" class="search-clear-btn" aria-label="Limpar pesquisa" title="Limpar pesquisa" onclick="clearSearch()">×</button>
+
+    </div>
+  </header>
+
+  <!-- ==================================================
+       CONTEÚDO PRINCIPAL
+  ================================================== -->
+  <main>
+
+    <div class="active-category-bar"
+         id="categoryBar"
+         style="display: none;">
+
+      <span class="active-category-title"
+            id="categoryTitle">
+      </span>
+
+      <button class="clear-category-btn"
+              onclick="filterCategory('Todas')">
+        Limpar Filtro ✕
+      </button>
+
+    </div>
+
+    <div class="lumina-banner" id="luminaBanner" aria-label="Destaques RAYSSA PRIME BEAUTY">
+      <div class="lumina-banner-slides" id="luminaBannerSlides" aria-live="polite"></div>
+      <div class="lumina-banner-overlay"></div>
+      <div class="lumina-banner-dots" id="luminaBannerDots" aria-label="Imagens do banner"></div>
+    </div>
+
+    <section class="slogan-banner" aria-label="Slogan RAYSSA PRIME BEAUTY">
+      <div class="slogan-banner-kicker">RAYSSA PRIME BEAUTY</div>
+      <h2>Beleza, estilo e você.</h2>
+      <p>Explore novidades de beleza, moda e acessórios escolhidas para deixar sua experiência ainda mais especial.</p>
+    </section>
+
+    <div class="lumina-update-notice">
+      <strong>✨ Aviso RAYSSA PRIME BEAUTY:</strong> o site é atualizado toda sexta-feira ou sábado com novidades.
+    </div>
+
+    <div class="container">
+      <div class="products-grid"
+           id="productsGrid">
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ==================================================
+       CATEGORIAS
+  ================================================== -->
+  <div class="fullscreen-overlay"
+       id="categoriesFullscreen">
+
+    <div class="overlay-header">
+
+      <h2>Categorias</h2>
+
+      <button class="close-btn-svg"
+              style="position: static;"
+              onclick="closeCategories()">
+
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="overlay-body">
+
+      <div class="categories-list"
+           id="categoriesList">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==================================================
+       PERFIL / USUÁRIO
+  ================================================== -->
+  <div class="modal-overlay" id="profileModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="profileModalTitle">
+    <div class="modal-content" style="display:block; max-width:500px; padding:28px;">
+      <button class="close-btn-svg" onclick="closeProfile()"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+      <div style="text-align:center;">
+        <div class="profile-avatar" aria-label="Identidade visual RAYSSA PRIME BEAUTY"><img src="logo-mark-v6-1-8.png" alt="RAYSSA PRIME BEAUTY"></div>
+        <h2 id="profileModalTitle" style="font-size:1.35rem; margin-bottom:5px;">Meu perfil</h2>
+        <p id="profileUserName" style="font-size:.95rem; color:#666; margin-bottom:24px;">Olá!</p>
+        <div class="lumina-update-notice" style="margin:0 auto 20px;">✨ O site é atualizado toda sexta-feira ou sábado com novidades.</div>
+      </div>
+      <div class="profile-links">
+        <div class="profile-section"><h4>Atendimento</h4>
+          <button class="profile-link" onclick="openInfo('Central de Ajuda','Estamos aqui para ajudar! Encontre respostas para suas dúvidas e conte com nosso suporte sempre que precisar de informações sobre produtos, pedidos, pagamentos e muito mais. Suporte rayssaprimebeauty@gmail.com ou rayss4sxzzsales@gmail.com.')">Central de Ajuda</button>
+          <button class="profile-link" onclick="openInfo('Como Comprar','Comprar na RAYSSA PRIME BEAUTY é simples e seguro. Escolha seus produtos favoritos, adicione-os na sacola, informe seus dados e finalize sua compra de forma rápida e prática pelo WhatsApp.')">Como Comprar</button>
+          <button class="profile-link" onclick="openInfo('Envios e Entregas','Trabalhamos para que seu pedido chegue até você com segurança e agilidade. Após a confirmação da compra, seu pedido será preparado e enviado, e você só precisa aguardar a chegada no endereço informado..')">Envios e Entregas</button>
+          <button class="profile-link" onclick="openInfo('Trocas e Devoluções','Queremos que você fique totalmente satisfeita com sua compra. Caso precise realizar uma troca ou devolução, conte com nosso suporte para tornar o processo simples, seguro e transparente.')">Trocas e Devoluções</button>
+        </div>
+        <div class="profile-section"><h4>Sobre a RAYSSA PRIME BEAUTY</h4>
+          <button class="profile-link" onclick="openInfo('Quem Somos','A RAYSSA PRIME BEAUTY nasceu para valorizar a beleza e a autoestima através de produtos selecionados com qualidade, cuidado e confiança. Nosso compromisso é oferecer uma experiência de compra especial para cada cliente.')">Quem Somos</button>
+          <button class="profile-link" onclick="openInfo('Políticas de Privacidade','A sua privacidade é muito importante para nós. Seus dados são tratados com segurança e responsabilidade, sempre respeitando sua confidencialidade e protegendo suas informações.')">Políticas de Privacidade</button>
+          <button class="profile-link" onclick="openInfo('Trabalhe Conosco','Quer fazer parte da RAYSSA PRIME BEAUTY? Estamos sempre em busca de pessoas talentosas, dedicadas e apaixonadas pelo universo da beleza. Venha crescer com a gente!')">Trabalhe Conosco</button>
+        </div>
+        <div class="profile-section"><h4>Redes Sociais</h4>
+          <button type="button" class="profile-link social-link" id="profileInstagramLink" onclick="openSocialInfo('Instagram')">Instagram</button>
+          <button type="button" class="profile-link social-link" id="profileTikTokLink" onclick="openSocialInfo('TikTok')">TikTok</button>
+          <button type="button" class="profile-link social-link" id="profileDesenvolvedorLink" onclick="openSocialInfo('Desenvolvedor')">Desenvolvedor</button>
+        </div>
+        <div class="profile-developer">
+          Desenvolvido por PRMdL<br>
+          © 2026 RAYSSA PRIME BEAUTY. Todos os direitos reservados.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ==================================================
+       INFORMAÇÕES DO PERFIL
+  ================================================== -->
+  <div class="modal-overlay" id="infoModal">
+    <div class="modal-content info-content">
+      <button class="close-btn-svg" onclick="closeInfo()">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <h2 id="infoTitle">LUMINA</h2>
+      <p id="infoText"></p>
+      <a id="infoActionBtn" class="info-action-btn" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Ir para o Instagram</a>
+    </div>
+  </div>
+
+  <!-- ==================================================
+       PRIMEIRA VISITA / USUÁRIO
+  ================================================== -->
+  <div class="modal-overlay" id="welcomeModal">
+    <div class="modal-content" style="display:block; max-width:460px; padding:28px;">
+      <div style="text-align:center;">
+        <div style="font-size:2.2rem; margin-bottom:10px;">✨</div>
+        <h2 style="font-size:1.45rem; margin-bottom:8px;">Bem-vindo à RAYSSA PRIME BEAUTY!</h2>
+        <p style="font-size:.92rem; color:#666; line-height:1.5; margin-bottom:22px;">
+          Para deixar sua experiência mais personalizada, crie seu usuário.
+        </p>
+        <div class="form-group" style="text-align:left;">
+          <label for="welcomeUserName">Seu nome *</label>
+          <input type="text" id="welcomeUserName" class="form-control"
+                 placeholder="Digite seu nome" maxlength="60" autocomplete="name">
+        </div>
+        <button class="checkout-btn" onclick="saveUser()">Continuar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================
+       AVISO DE ATUALIZAÇÃO — NÃO EXIGE LOGIN
+  ================================================== -->
+  <div class="update-notification" id="updateNotification" role="status" aria-live="polite">
+    <div class="update-notification-icon">✨</div>
+    <div class="update-notification-body">
+      <strong>Novidade na RAYSSA PRIME BEAUTY!</strong>
+      <span id="updateNotificationVersion">Uma nova atualização está disponível.</span>
+      <small id="updateNotificationStatus">Confira as melhorias da loja.</small>
+    </div>
+    <button class="update-notification-close" onclick="closeUpdateNotification()" aria-label="Fechar">×</button>
+    <button class="update-notification-action" id="enableUpdateNotificationsBtn" onclick="enableUpdateNotifications()">
+      Ativar notificações
+    </button>
+  </div>
+
+  <!-- ==================================================
+       INSTALAÇÃO DO APLICATIVO
+  ================================================== -->
+  <div class="modal-overlay" id="installModal">
+    <div class="modal-content" style="display:block; max-width:460px; padding:28px;">
+      <button class="close-btn-svg" onclick="closeInstall()">
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div style="text-align:center;">
+        <div style="font-size:2.2rem; margin-bottom:10px;">📲</div>
+        <h2 style="font-size:1.35rem; margin-bottom:8px;">Instalar LUMINA</h2>
+        <p id="installMessage" style="font-size:.92rem; color:#666; line-height:1.5; margin-bottom:20px;">
+          Instale a RAYSSA PRIME BEAUTY no seu celular para acessar a loja como um aplicativo.
+        </p>
+        <button class="checkout-btn" id="installAppBtn" onclick="installApp()">
+          Instalar aplicativo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================================================
+       MODAL DO PRODUTO
+  ================================================== -->
+  <div class="modal-overlay"
+       id="productModal">
+
+    <div class="modal-content">
+
+      <button class="close-btn-svg"
+              onclick="closeModal()">
+
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+      </button>
+
+      <div class="modal-gallery-wrap">
+
+        <div class="zoom-container"
+             id="zoomArea"
+             onmousemove="handleZoom(event)"
+             onmouseleave="resetZoom()">
+
+          <img src=""
+               id="modalImgMain"
+               alt="" />
+
+        </div>
+
+        <div class="thumbnails-row"
+             id="thumbnailsRow">
+        </div>
+
+      </div>
+
+      <div class="modal-details">
+
+        <h2 class="modal-title"
+            id="modalTitle">
+        </h2>
+
+        <div class="modal-price"
+             id="modalPrice">
+        </div>
+
+        <p class="modal-description"
+           id="modalDesc">
+        </p>
+
+        <!-- ==================================================
+             VARIAÇÕES / TAMANHOS
+        ================================================== -->
+        <div class="size-selector" id="variationSelector" style="display:none;">
+          <div id="variationOptions"></div>
+        </div>
+
+        <button class="add-to-cart"
+                onclick="addToCartFromModal()">
+
+          Adicionar à Sacola
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==================================================
+       FAVORITOS
+  ================================================== -->
+  <div class="fullscreen-overlay"
+       id="favFullscreen">
+
+    <div class="overlay-header">
+
+      <h2>Meus Favoritos</h2>
+
+      <button class="close-btn-svg"
+              style="position: static;"
+              onclick="closeFavorites()">
+
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="overlay-body">
+
+      <div class="products-grid"
+           id="favoritesGrid">
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==================================================
+       SACOLA
+  ================================================== -->
+  <div class="fullscreen-overlay"
+       id="cartFullscreen">
+
+    <div class="overlay-header">
+
+      <h2>Sua Sacola</h2>
+
+      <button class="close-btn-svg"
+              style="position: static;"
+              onclick="closeCart()">
+
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="cart-progress-wrap">
+
+      <div class="progress-text">
+
+        <span id="progressTextLabel">
+          Etapa 1 de 3: Sacola
+        </span>
+
+        <span id="progressTextPercent">
+          33%
+        </span>
+
+      </div>
+
+      <div class="progress-points-container">
+
+        <div class="progress-line-bg"></div>
+
+        <div class="progress-line-fill"
+             id="progressLineFill">
+        </div>
+
+        <div class="point-step achieved"
+             id="step1">
+          1
+          <span class="point-label">
+            Sacola
+          </span>
+        </div>
+
+        <div class="point-step"
+             id="step2">
+          2
+          <span class="point-label">
+            Entrega
+          </span>
+        </div>
+
+        <div class="point-step"
+             id="step3">
+          3
+          <span class="point-label">
+            Revisão
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="overlay-body">
+      <div id="cartBody"></div>
+    </div>
+
+    <div class="cart-footer">
+
+      <div class="cart-footer-wrapper">
+
+        <div class="cart-total-row">
+          <span>Total</span>
+          <span id="cartTotal">
+            R$ 0,00
+          </span>
+        </div>
+
+        <button
+          class="checkout-btn"
+          id="btnProceedToCheckout"
+          onclick="proceedToCheckout()">
+
+          <span class="spinner"
+                id="cartSpinner">
+          </span>
+
+          <span id="btnProceedText">
+            Prosseguir para Entrega
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==================================================
+       CHECKOUT - ENTREGA
+  ================================================== -->
+  <div class="fullscreen-overlay"
+       id="checkoutStep1">
+
+    <div class="overlay-header">
+
+      <h2>Opções de Entrega</h2>
+
+      <button class="close-btn-svg"
+              style="position: static;"
+              onclick="closeCheckoutStep1()">
+
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="cart-progress-wrap">
+
+      <div class="progress-text">
+        <span>
+          Etapa 2 de 3: Dados de Entrega
+        </span>
+
+        <span>
+          66%
+        </span>
+      </div>
+
+      <div class="progress-points-container">
+
+        <div class="progress-line-bg"></div>
+
+        <div class="progress-line-fill"
+             style="width: 50%;">
+        </div>
+
+        <div class="point-step achieved">
+          1
+          <span class="point-label">
+            Sacola
+          </span>
+        </div>
+
+        <div class="point-step achieved">
+          2
+          <span class="point-label">
+            Entrega
+          </span>
+        </div>
+
+        <div class="point-step">
+          3
+          <span class="point-label">
+            Revisão
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="overlay-body">
+
+      <div class="delivery-options">
+
+        <button
+          class="delivery-type-btn active"
+          id="btnTypeDelivery"
+          onclick="setDeliveryType('delivery')">
+
+          Entrega Local
+
+        </button>
+
+        <button
+          class="delivery-type-btn"
+          id="btnTypePickup"
+          onclick="setDeliveryType('pickup')">
+
+          Retirar com Vendedor
+
+        </button>
+
+      </div>
+
+      <div id="formDelivery">
+
+        <div class="city-badge">
+          📍 Chapadinha - MA
+        </div>
+
+        <div class="form-group">
+          <label>Bairro *</label>
+          <input
+            type="text"
+            id="inpBairro"
+            class="form-control"
+            placeholder="Ex: Centro">
+        </div>
+
+        <div class="form-group">
+          <label>Rua *</label>
+          <input
+            type="text"
+            id="inpRua"
+            class="form-control"
+            placeholder="Ex: Rua Gustavo Barbosa">
+        </div>
+
+        <div class="form-group">
+          <label>Número *</label>
+          <input
+            type="text"
+            id="inpNumero"
+            class="form-control"
+            placeholder="Ex: 123">
+        </div>
+
+        <div class="form-group">
+          <label>Contato (WhatsApp) *</label>
+          <input
+            type="tel"
+            id="inpContato"
+            class="form-control"
+            placeholder="(99) 99999-9999">
+        </div>
+
+        <div class="form-group">
+          <label>CPF *</label>
+          <input
+            type="text"
+            id="inpCpf"
+            class="form-control"
+            placeholder="000.000.000-00">
+        </div>
+
+        <div class="form-group">
+          <label>Ponto de Referência</label>
+          <input
+            type="text"
+            id="inpRef"
+            class="form-control"
+            placeholder="Ex: Próximo à praça">
+        </div>
+
+        <div class="form-group">
+          <label>Nota / Observação</label>
+          <input
+            type="text"
+            id="inpNota"
+            class="form-control"
+            placeholder="Ex: Entregar após as 14h">
+        </div>
+
+      </div>
+
+      <div id="formPickup"
+           style="display: none;">
+
+        <div class="form-group">
+          <label>Nome Completo *</label>
+          <input
+            type="text"
+            id="inpNomePickup"
+            class="form-control"
+            placeholder="Seu nome completo">
+        </div>
+
+        <div class="form-group">
+          <label>CPF *</label>
+          <input
+            type="text"
+            id="inpCpfPickup"
+            class="form-control"
+            placeholder="000.000.000-00">
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="cart-footer">
+
+      <div class="cart-footer-wrapper">
+
+        <button
+          class="checkout-btn"
+          id="btnProceedToReview"
+          onclick="proceedToReview()">
+
+          <span class="spinner"
+                id="reviewSpinner">
+          </span>
+
+          <span id="btnReviewText">
+            Prosseguir para Revisão
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==================================================
+       CHECKOUT - REVISÃO
+  ================================================== -->
+  <div class="fullscreen-overlay"
+       id="checkoutStep2">
+
+    <div class="overlay-header">
+
+      <h2>Revisar & Finalizar</h2>
+
+      <button class="close-btn-svg"
+              style="position: static;"
+              onclick="closeCheckoutStep2()">
+
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="cart-progress-wrap">
+
+      <div class="progress-text">
+
+        <span>
+          Etapa 3 de 3: Revisão & WhatsApp
+        </span>
+
+        <span>
+          100%
+        </span>
+
+      </div>
+
+      <div class="progress-points-container">
+
+        <div class="progress-line-bg"></div>
+
+        <div class="progress-line-fill"
+             style="width: 100%;">
+        </div>
+
+        <div class="point-step achieved">
+          1
+          <span class="point-label">
+            Sacola
+          </span>
+        </div>
+
+        <div class="point-step achieved">
+          2
+          <span class="point-label">
+            Entrega
+          </span>
+        </div>
+
+        <div class="point-step achieved">
+          3
+          <span class="point-label">
+            Revisão
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="overlay-body">
+
+      <p style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">
+        Confira a nota do seu pedido antes de ser redirecionado ao WhatsApp:
+      </p>
+
+      <div class="receipt-box"
+           id="receiptPreview">
+      </div>
+
+    </div>
+
+    <div class="cart-footer">
+
+      <div class="cart-footer-wrapper">
+
+        <button
+          class="checkout-btn"
+          style="background: #25D366;"
+          id="btnSendWhatsapp"
+          onclick="sendOrderToWhatsapp()">
+
+          <span class="spinner"
+                id="waSpinner">
+          </span>
+
+          <span id="btnWaText">
+            Finalizar no WhatsApp
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==================================================
+       NAVEGAÇÃO DO APLICATIVO
+  ================================================== -->
+  <nav class="app-bottom-nav" aria-label="Navegação principal">
+    <button class="app-nav-btn" onclick="openCart()" title="Sacola">
+      <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+      <span class="app-nav-label">Sacola</span>
+      <span class="app-nav-badge" id="bottomCartBadge">0</span>
+    </button>
+    <button class="app-nav-btn" onclick="openCategories()" title="Categorias">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect></svg>
+      <span class="app-nav-label">Categorias</span>
+    </button>
+    <button class="app-nav-btn" onclick="openProfile()" title="Perfil">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"></circle><path d="M5.5 20c.7-3.2 3.1-5 6.5-5s5.8 1.8 6.5 5"></path></svg>
+      <span class="app-nav-label">Perfil</span>
+    </button>
+    <button class="app-nav-btn" onclick="openFavorites()" title="Favoritos">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+      <span class="app-nav-label">Favoritos</span>
+      <span class="app-nav-badge" id="bottomFavBadge">0</span>
+    </button>
+    <button class="app-nav-btn" onclick="openInstall()" title="Instalar RAYSSA PRIME BEAUTY">
+      <svg viewBox="0 0 24 24"><path d="M12 3v10"></path><path d="m8 10 4 4 4-4"></path><path d="M5 20h14"></path></svg>
+      <span class="app-nav-label">Instalar</span>
+    </button>
+  </nav>
+
+
+  <!-- ==================================================
+       RODAPÉ
+       Mantido no HTML para compatibilidade; a navegação inferior
+       da interface substitui o rodapé visual em todos os dispositivos.
+  ================================================== -->
+  <footer>
+
+    <div class="footer-content">
+
+      <div class="footer-col">
+
+        <h4>Atendimento</h4>
+
+        <ul>
+          <li><a href="#">Central de Ajuda</a></li>
+          <li><a href="#">Como Comprar</a></li>
+          <li><a href="#">Envios e Entregas</a></li>
+          <li><a href="#">Trocas e Devoluções</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Sobre a Rayssa Prime Beauty</h4>
+
+        <ul>
+          <li><a href="#">Quem Somos</a></li>
+          <li><a href="#">Políticas de Privacidade</a></li>
+          <li><a href="#">Trabalhe Conosco</a></li>
+        </ul>
+
+      </div>
+
+      <div class="footer-col">
+
+        <h4>Redes Sociais</h4>
+
+        <ul>
+          <li><a id="footerInstagramLink" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          <li><a id="footerTikTokLink" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+          <li><a id="footerDesenvolvedorLink" href="#" target="_blank" rel="noopener noreferrer">Desenvolvedor</a></li>
+        </ul>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2026 RAYSSA PRIME BEAUTY. Todos os direitos reservados.
+    </div>
+
+  </footer>
+
+  <!-- ==================================================
+       JAVASCRIPT
+  ================================================== -->
+  <script src="js/config.js?v=7.0.2"></script>
+  <script src="js/products.js?v=7.0.2"></script>
+  <script src="js/state.js?v=7.0.2"></script>
+  <script src="js/app.js?v=7.0.2"></script>
+
+</body>
+</html>
