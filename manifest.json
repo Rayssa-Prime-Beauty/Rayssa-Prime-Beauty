@@ -1,0 +1,26 @@
+{
+  "name": "RAYSSA PRIME BEAUTY | Beleza, Moda & Acessórios",
+  "short_name": "RAYSSA PRIME BEAUTY",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fbf7f8",
+  "theme_color": "#2b1823",
+  "description": "RAYSSA PRIME BEAUTY - Beleza, Moda & Acessórios.",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192-v6-1-8.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icons/icon-512-v6-1-8.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "id": "./",
+  "scope": "./",
+  "prefer_related_applications": false
+}
